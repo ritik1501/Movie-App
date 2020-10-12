@@ -1,12 +1,21 @@
 package com.example.movieapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toolbar;
 
 import com.example.movieapp.adapter.BannerMoviePageAdapter;
+import com.example.movieapp.adapter.MainRecyclerAdapter;
+import com.example.movieapp.model.AllCategory;
 import com.example.movieapp.model.BannerMovies;
+import com.example.movieapp.model.CategoryItem;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -23,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
     List<BannerMovies> tvShowsBannerList;
     List<BannerMovies> kidsBannerList;
     List<BannerMovies> moviesBannerList;
+    Timer sliderTimer;
+    NestedScrollView nestedScrollView;
+    AppBarLayout appBarLayout;
+
+    MainRecyclerAdapter mainRecyclerAdapter;
+    RecyclerView mainRecycler;
+    List<AllCategory> allCategoryList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         indicatorTab = findViewById(R.id.tab_indicator);
         categoryTab = findViewById(R.id.tabLayout);
+        nestedScrollView = findViewById(R.id.nested_scroll);
+        appBarLayout = findViewById(R.id.appbar);
 
         homeBannerList = new ArrayList<>();
         homeBannerList.add(new BannerMovies(1,"Mondal","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner1.png",""));
@@ -64,18 +82,21 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()){
                     case 1 :
+                        setScrollDefaultState();
                         setBannerMoviesPageAdapter(tvShowsBannerList);
                         return;
                     case 2:
+                        setScrollDefaultState();
                         setBannerMoviesPageAdapter(moviesBannerList);
                         return;
                     case 3:
+                        setScrollDefaultState();
                         setBannerMoviesPageAdapter(kidsBannerList);
                         return;
                     default:
+                        setScrollDefaultState();
                         setBannerMoviesPageAdapter(homeBannerList);
                 }
-
             }
 
             @Override
@@ -88,6 +109,21 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        List<CategoryItem> homeCatListItem1 = new ArrayList<>();
+        homeCatListItem1.add(new CategoryItem(1, "Pickachu", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner4.png", ""));
+        homeCatListItem1.add(new CategoryItem(2, "Picachu", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner5.png", ""));
+        homeCatListItem1.add(new CategoryItem(3, "Pickachu", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner6.png", ""));
+        homeCatListItem1.add(new CategoryItem(4, "Pckachu", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner7.png", ""));
+        homeCatListItem1.add(new CategoryItem(5, "Pickach", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner8.png", ""));
+
+        allCategoryList = new ArrayList<>();
+        allCategoryList.add(new AllCategory(1, "Watch Next TV and Movies", homeCatListItem1));
+        allCategoryList.add(new AllCategory(2,"Movies in Hindi", homeCatListItem1));
+        allCategoryList.add(new AllCategory(3,"Kids and Family Movies", homeCatListItem1));
+        allCategoryList.add(new AllCategory(4,"Amazon Original Series", homeCatListItem1));
+
+        setMainRecycler(allCategoryList);
     }
 
     private void setBannerMoviesPageAdapter(List<BannerMovies> bannerMoviesList){
@@ -96,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         bannerMovieViewPager.setAdapter(bannerMoviePageAdapter);
         indicatorTab.setupWithViewPager(bannerMovieViewPager);
 
-        Timer sliderTimer = new Timer();
+        sliderTimer = new Timer();
         sliderTimer.scheduleAtFixedRate(new AutoSlider(), 5000,10000);
         indicatorTab.setupWithViewPager(bannerMovieViewPager, true);
     }
@@ -116,5 +152,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    public void setMainRecycler(List<AllCategory> allCategoryList){
+        mainRecycler = findViewById(R.id.main_recycler);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        mainRecycler.setLayoutManager(layoutManager);
+        mainRecyclerAdapter = new MainRecyclerAdapter(this, allCategoryList);
+        mainRecycler.setAdapter(mainRecyclerAdapter);
+    }
+
+    private void setScrollDefaultState(){
+        nestedScrollView.fullScroll(View.FOCUS_UP);
+        nestedScrollView.scrollTo(0,0);
+        appBarLayout.setExpanded(true);
     }
 }
