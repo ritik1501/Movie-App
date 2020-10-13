@@ -51,30 +51,32 @@ public class MainActivity extends AppCompatActivity {
         appBarLayout = findViewById(R.id.appbar);
 
         homeBannerList = new ArrayList<>();
-        homeBannerList.add(new BannerMovies(1,"Mondal","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner1.png",""));
-        homeBannerList.add(new BannerMovies(2,"Little Women","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner2.png",""));
-        homeBannerList.add(new BannerMovies(3,"Bhoot","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner3.png",""));
-        homeBannerList.add(new BannerMovies(4,"Mirzapur","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner4.png",""));
-        homeBannerList.add(new BannerMovies(5,"Pickachu","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner5.png",""));
+        homeBannerList.add(new BannerMovies(1,"Mondal","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner1.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+        homeBannerList.add(new BannerMovies(2,"Little Women","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner2.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+        homeBannerList.add(new BannerMovies(3,"Bhoot","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner3.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+        homeBannerList.add(new BannerMovies(4,"Mirzapur","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner4.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/mirzapur.mp4"));
+        homeBannerList.add(new BannerMovies(5,"Pickachu","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner5.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
 
         tvShowsBannerList = new ArrayList<>();
-        tvShowsBannerList.add(new BannerMovies(1,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/tvshowbanner1.png",""));
-        tvShowsBannerList.add(new BannerMovies(2,"Comicstaan","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/tvshowbanner2.png",""));
-        tvShowsBannerList.add(new BannerMovies(3,"Upload","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/tvshowbanner3.png",""));
-        tvShowsBannerList.add(new BannerMovies(4,"Hunters","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/tvshowbanner4.png",""));
-        tvShowsBannerList.add(new BannerMovies(5,"Mondal","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/tvshowbanner5.png",""));
+        tvShowsBannerList.add(new BannerMovies(1,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/tvshowbanner1.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+        tvShowsBannerList.add(new BannerMovies(2,"Comicstaan","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/tvshowbanner2.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/comicstaan.mp4"));
+        tvShowsBannerList.add(new BannerMovies(3,"Upload","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/tvshowbanner3.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+        tvShowsBannerList.add(new BannerMovies(4,"Hunters","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/tvshowbanner4.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/hunters.mp4"));
+        tvShowsBannerList.add(new BannerMovies(5,"Mondal","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/tvshowbanner5.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
 
         moviesBannerList = new ArrayList<>();
-        moviesBannerList.add(new BannerMovies(1,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/moviebanner1.png",""));
-        moviesBannerList.add(new BannerMovies(2,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/moviebanner2.png",""));
-        moviesBannerList.add(new BannerMovies(3,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/moviebanner3.png",""));
-        moviesBannerList.add(new BannerMovies(4,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/moviebanner4.png",""));
-        moviesBannerList.add(new BannerMovies(5,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/moviebanner5.png",""));
+        moviesBannerList.add(new BannerMovies(1,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/moviebanner1.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+        moviesBannerList.add(new BannerMovies(2,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/moviebanner2.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+        moviesBannerList.add(new BannerMovies(3,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/moviebanner3.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+        moviesBannerList.add(new BannerMovies(4,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/moviebanner4.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+        moviesBannerList.add(new BannerMovies(5,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/moviebanner5.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
 
         kidsBannerList = new ArrayList<>();
-        kidsBannerList.add(new BannerMovies(1,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner1.png",""));
-        kidsBannerList.add(new BannerMovies(2,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner2.png",""));
-        kidsBannerList.add(new BannerMovies(3,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner3.png",""));
+        kidsBannerList.add(new BannerMovies(1,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner1.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+        kidsBannerList.add(new BannerMovies(2,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner2.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+        kidsBannerList.add(new BannerMovies(3,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner3.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+        kidsBannerList.add(new BannerMovies(3,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner4.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
+        kidsBannerList.add(new BannerMovies(3,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner5.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
 
         setBannerMoviesPageAdapter(homeBannerList);
         categoryTab.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {

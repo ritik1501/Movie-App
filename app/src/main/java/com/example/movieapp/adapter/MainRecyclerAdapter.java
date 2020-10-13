@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,9 +34,11 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MainViewHolder holder, final int position) {
         holder.categoryName.setText(allCategoryList.get(position).getCategoryTitle());
         setItemRecycler(holder.itemRecycler, allCategoryList.get(position).getCategoryItemList());
+
+
     }
 
     @Override
