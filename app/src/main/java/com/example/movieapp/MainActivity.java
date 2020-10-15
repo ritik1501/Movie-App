@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toolbar;
 
@@ -15,6 +16,7 @@ import com.example.movieapp.adapter.MainRecyclerAdapter;
 import com.example.movieapp.model.AllCategory;
 import com.example.movieapp.model.BannerMovies;
 import com.example.movieapp.model.CategoryItem;
+import com.example.movieapp.retrofit.RetrofitClient;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 
@@ -22,6 +24,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,34 +61,14 @@ public class MainActivity extends AppCompatActivity {
         appBarLayout = findViewById(R.id.appbar);
 
         homeBannerList = new ArrayList<>();
-        homeBannerList.add(new BannerMovies(1,"Mondal","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner1.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        homeBannerList.add(new BannerMovies(2,"Little Women","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner2.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        homeBannerList.add(new BannerMovies(3,"Bhoot","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner3.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        homeBannerList.add(new BannerMovies(4,"Mirzapur","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner4.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/mirzapur.mp4"));
-        homeBannerList.add(new BannerMovies(5,"Pickachu","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/homebanner5.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-
         tvShowsBannerList = new ArrayList<>();
-        tvShowsBannerList.add(new BannerMovies(1,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/tvshowbanner1.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        tvShowsBannerList.add(new BannerMovies(2,"Comicstaan","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/tvshowbanner2.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/comicstaan.mp4"));
-        tvShowsBannerList.add(new BannerMovies(3,"Upload","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/tvshowbanner3.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        tvShowsBannerList.add(new BannerMovies(4,"Hunters","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/tvshowbanner4.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/hunters.mp4"));
-        tvShowsBannerList.add(new BannerMovies(5,"Mondal","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/tvshowbanner5.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-
         moviesBannerList = new ArrayList<>();
-        moviesBannerList.add(new BannerMovies(1,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/moviebanner1.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        moviesBannerList.add(new BannerMovies(2,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/moviebanner2.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        moviesBannerList.add(new BannerMovies(3,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/moviebanner3.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        moviesBannerList.add(new BannerMovies(4,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/moviebanner4.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        moviesBannerList.add(new BannerMovies(5,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/moviebanner5.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-
         kidsBannerList = new ArrayList<>();
-        kidsBannerList.add(new BannerMovies(1,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner1.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        kidsBannerList.add(new BannerMovies(2,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner2.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        kidsBannerList.add(new BannerMovies(3,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner3.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        kidsBannerList.add(new BannerMovies(3,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner4.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
-        kidsBannerList.add(new BannerMovies(3,"Skulls","http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner5.png","https://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/patallok.mp4"));
 
-        setBannerMoviesPageAdapter(homeBannerList);
+        getBannerData();
+
+        getAllMoviesData(1);
+
         categoryTab.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -86,18 +76,22 @@ public class MainActivity extends AppCompatActivity {
                     case 1 :
                         setScrollDefaultState();
                         setBannerMoviesPageAdapter(tvShowsBannerList);
+                        getAllMoviesData(2);
                         return;
                     case 2:
                         setScrollDefaultState();
                         setBannerMoviesPageAdapter(moviesBannerList);
+                        getAllMoviesData(3);
                         return;
                     case 3:
                         setScrollDefaultState();
                         setBannerMoviesPageAdapter(kidsBannerList);
+                        getAllMoviesData(4);
                         return;
                     default:
                         setScrollDefaultState();
                         setBannerMoviesPageAdapter(homeBannerList);
+                        getAllMoviesData(1);
                 }
             }
 
@@ -110,22 +104,11 @@ public class MainActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
 
             }
+
         });
 
-        List<CategoryItem> homeCatListItem1 = new ArrayList<>();
-        homeCatListItem1.add(new CategoryItem(1, "Pickachu", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner4.png", ""));
-        homeCatListItem1.add(new CategoryItem(2, "Picachu", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner5.png", ""));
-        homeCatListItem1.add(new CategoryItem(3, "Pickachu", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner6.png", ""));
-        homeCatListItem1.add(new CategoryItem(4, "Pckachu", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner7.png", ""));
-        homeCatListItem1.add(new CategoryItem(5, "Pickach", "http://androidappsforyoutube.s3.ap-south-1.amazonaws.com/primevideo/banners/kidsbanner8.png", ""));
-
         allCategoryList = new ArrayList<>();
-        allCategoryList.add(new AllCategory(1, "Watch Next TV and Movies", homeCatListItem1));
-        allCategoryList.add(new AllCategory(2,"Movies in Hindi", homeCatListItem1));
-        allCategoryList.add(new AllCategory(3,"Kids and Family Movies", homeCatListItem1));
-        allCategoryList.add(new AllCategory(4,"Amazon Original Series", homeCatListItem1));
 
-        setMainRecycler(allCategoryList);
     }
 
     private void setBannerMoviesPageAdapter(List<BannerMovies> bannerMoviesList){
@@ -168,5 +151,69 @@ public class MainActivity extends AppCompatActivity {
         nestedScrollView.fullScroll(View.FOCUS_UP);
         nestedScrollView.scrollTo(0,0);
         appBarLayout.setExpanded(true);
+    }
+
+    private void getBannerData(){
+
+        CompositeDisposable compositeDisposable = new CompositeDisposable();
+        compositeDisposable.add(RetrofitClient.getRetrofitClient().getAllBanners()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<List<BannerMovies>>() {
+                    @Override
+                    public void onNext(List<BannerMovies> bannerMovies) {
+                        for(int i=0; i<bannerMovies.size(); i++){
+                            if(bannerMovies.get(i).getBannerCategoryId().toString().equals("1")){
+                                homeBannerList.add(bannerMovies.get(i));
+                            }
+                            else if(bannerMovies.get(i).getBannerCategoryId().toString().equals("2")){
+                                tvShowsBannerList.add(bannerMovies.get(i));
+                            }
+                            else if(bannerMovies.get(i).getBannerCategoryId().toString().equals("3")){
+                                moviesBannerList.add(bannerMovies.get(i));
+                            }
+                            else if(bannerMovies.get(i).getBannerCategoryId().toString().equals("4")){
+                                kidsBannerList.add(bannerMovies.get(i));
+                            }
+                            else{
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d("bannerData",""+e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        setBannerMoviesPageAdapter(homeBannerList);
+                    }
+                }));
+    }
+
+    private void getAllMoviesData(int categoryId){
+
+        CompositeDisposable compositeDisposable = new CompositeDisposable();
+        compositeDisposable.add(RetrofitClient.getRetrofitClient().getAllCategoryMovies(categoryId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<List<AllCategory>>() {
+                    @Override
+                    public void onNext(List<AllCategory> allCategoryList) {
+                        setMainRecycler(allCategoryList);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d("bannerData",""+e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                }));
     }
 }

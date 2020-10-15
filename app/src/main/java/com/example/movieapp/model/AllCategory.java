@@ -1,25 +1,27 @@
 package com.example.movieapp.model;
 
 import java.util.List;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class AllCategory {
 
-    String categoryTitle;
-    Integer categoryId;
+    @SerializedName("categoryId")
+    @Expose
+    private Integer categoryId;
+    @SerializedName("categoryTitle")
+    @Expose
+    private String categoryTitle;
+    @SerializedName("categoryItemList")
+    @Expose
     private List<CategoryItem> categoryItemList = null;
 
-    public AllCategory( Integer categoryId, String categoryTitle, List<CategoryItem> categoryItemList) {
-        this.categoryTitle = categoryTitle;
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
-        this.categoryItemList = categoryItemList;
-    }
-
-    public List<CategoryItem> getCategoryItemList() {
-        return categoryItemList;
-    }
-
-    public void setCategoryItemList(List<CategoryItem> categoryItemList) {
-        this.categoryItemList = categoryItemList;
     }
 
     public String getCategoryTitle() {
@@ -30,11 +32,12 @@ public class AllCategory {
         this.categoryTitle = categoryTitle;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
+    public List<CategoryItem> getCategoryItemList() {
+        return categoryItemList;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryItemList(List<CategoryItem> categoryItemList) {
+        this.categoryItemList = categoryItemList;
     }
+
 }

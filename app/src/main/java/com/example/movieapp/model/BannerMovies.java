@@ -1,10 +1,20 @@
 package com.example.movieapp.model;
 
 public class BannerMovies {
+
+    Integer bannerCategoryId;
     Integer id;
     String movieName;
     String imageUrl;
     String fileUrl;
+
+    public Integer getBannerCategoryId() {
+        return bannerCategoryId;
+    }
+
+    public void setBannerCategoryId(Integer bannerCategoryId) {
+        this.bannerCategoryId = bannerCategoryId;
+    }
 
     public Integer getId() {
         return id;
@@ -38,7 +48,8 @@ public class BannerMovies {
         this.fileUrl = fileUrl;
     }
 
-    public BannerMovies(Integer id, String movieName, String imageUrl, String fileUrl) {
+    public BannerMovies(Integer bannerCategoryId, Integer id, String movieName, String imageUrl, String fileUrl) {
+        this.bannerCategoryId = bannerCategoryId;
         this.id = id;
         this.movieName = movieName;
         this.imageUrl = imageUrl;

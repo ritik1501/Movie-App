@@ -1,32 +1,37 @@
 package com.example.movieapp.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class CategoryItem {
-    Integer id;
-    String movieName;
-    String imageUrl;
-    String fileUrl;
+
+    @SerializedName("fileUrl")
+    @Expose
+    private String fileUrl;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("imageUrl")
+    @Expose
+    private String imageUrl;
+    @SerializedName("movieName")
+    @Expose
+    private String movieName;
+
+    public String getFileUrl() {
+        return fileUrl;
+    }
+
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
+    }
 
     public Integer getId() {
         return id;
     }
 
-    public CategoryItem(Integer id, String movieName, String imageUrl, String fileUrl) {
-        this.id = id;
-        this.movieName = movieName;
-        this.imageUrl = imageUrl;
-        this.fileUrl = fileUrl;
-    }
-
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getMovieName() {
-        return movieName;
-    }
-
-    public void setMovieName(String movieName) {
-        this.movieName = movieName;
     }
 
     public String getImageUrl() {
@@ -37,11 +42,12 @@ public class CategoryItem {
         this.imageUrl = imageUrl;
     }
 
-    public String getFileUrl() {
-        return fileUrl;
+    public String getMovieName() {
+        return movieName;
     }
 
-    public void setFileUrl(String fileUrl) {
-        this.fileUrl = fileUrl;
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
     }
+
 }
