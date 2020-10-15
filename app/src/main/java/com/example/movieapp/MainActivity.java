@@ -155,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
+
     public void setMainRecycler(List<AllCategory> allCategoryList){
         mainRecycler = findViewById(R.id.main_recycler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
